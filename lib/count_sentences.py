@@ -31,17 +31,9 @@ class MyString:
     else: return False
 
   def count_sentences(self):
-    counter = 0
-    sentence_list = []
-    punctuation_list = [".", "?", "!"]
-
-    for index in self.value:
-      if index in punctuation_list:
-        index_of_punctuation = self.value.index(index)
-        temp_sentence = self.value[0:index_of_punctuation+1]
-        sentence_list += [temp_sentence]
-        self.value.replace(temp_sentence, "")
-        self.value.strip()
-        print(self.value)
-        print(sentence_list)
+    temp_value = self.value
+    for index in ["!", "?"]:
+      temp_value = temp_value.replace(index, ".")
+    sentence_list = [sentence for sentence in temp_value.split(".") if sentence]
+    return len(sentence_list)
       
